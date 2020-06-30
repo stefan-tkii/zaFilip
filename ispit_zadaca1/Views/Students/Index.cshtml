@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ispit_zadaca1.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.indeks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.signature)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.indeks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.signature)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Enroll_list" asp-route-id="@item.Id">Enroll list</a>
+                <a asp-action="View_enrollments" asp-route-id="@item.Id"> View labs </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

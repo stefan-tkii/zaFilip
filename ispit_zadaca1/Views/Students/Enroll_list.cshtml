@@ -1,0 +1,80 @@
+﻿@model ispit_zadaca1.ViewModels.EnrollViewModel
+@{
+    ViewData["Title"] = "Enroll_list";
+}
+
+<h1>Enroll list for single student</h1>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.student.fullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.student.indeks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.student.signature)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.student.fullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.student.indeks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.student.signature)
+                </td>
+                <td>
+                </td>
+            </tr>
+        
+    </tbody>
+</table>
+<br />
+<h2>List of lab vezbi: </h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.vezbi)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.desc)
+                </td>
+                <td>
+                    <form asp-action="Enroll" method="get" asp-controller="Students">
+                        <input type="hidden" id="studentId" name="studentId" value="@Model.student.Id" />
+                        <input required type="checkbox" id="labId" name="labId" value="@item.Id" />
+                        <input type="submit" value="Enroll" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
